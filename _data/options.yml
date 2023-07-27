@@ -4,8 +4,6 @@ mirror_desc:
     desc: Android 操作系统源代码
   - name: AdoptOpenJDK
     desc: 社区维护的 OpenJDK 二进制包
-  - name: AUR
-    desc: Arch Linux 用户软件库
   - name: Bananian
     desc: 为 Banana Pi 制作的，基于官方 Debian 仓库的发行版镜像和软件包仓库
   - name: CPAN
@@ -16,8 +14,6 @@ mirror_desc:
     desc: TeX 的各种发行版、软件包和文档
   - name: CocoaPods
     desc: Objective-C 和 Swift 的依赖管理器
-  - name: ELK
-    desc: 现已更名为 Elastic Stack，仅保留用作向后兼容
   - name: FreeCAD
     desc: 基于 Qt 的计算机辅助设计程序
   - name: KaOS
@@ -56,8 +52,6 @@ mirror_desc:
     desc: Artix Linux 的官方软件包仓库（基于 Arch Linux 的不使用 systemd 的发行版）
   - name: artixlinux-iso
     desc: Artix Linux 的安装镜像
-  - name: bananian
-    desc: 用于 Banana Pi 的 Debian 操作系统
   - name: binutils-gdb.git
     desc: Binutils 和 GDB 等开发工具的源码 Git 仓库
   - name: bioconductor
@@ -92,10 +86,12 @@ mirror_desc:
     desc: Clojure 语言的第三方软件包仓库
   - name: cmder
     desc: Windows 下的终端模拟器套件
+  - name: crates.io-index
+    desc: 面向 Rust 语言的软件包稀疏索引 crates.io
   - name: crates.io-index.git
     desc: 面向 Rust 语言的软件包索引 crates.io
   - name: ctex
-    desc: 旧版 CTEX 安装镜像存档
+    desc: CTEX 安装镜像存档
   - name: cygwin
     desc: Cygwin 官方软件包仓库
   - name: dart-pub
@@ -130,6 +126,8 @@ mirror_desc:
     desc: RHEL 及其变体的 RPM 软件包仓库
   - name: elvish
     desc: TUNA 前会长 xiaq 开发的革命性 Shell
+  - name: entware
+    desc: 适用于嵌入式系统的软件包库
   - name: epel
     desc: 企业版 Linux 附加软件包
   - name: erlang-solutions
@@ -164,6 +162,8 @@ mirror_desc:
     desc: Git 工具的 Windows 系统版本
   - name: git-repo
     desc: Google 开发的项目依赖下载工具 repo 的镜像
+  - name: github-raw
+    desc: 一些 Github 项目的部分文件镜像（被其他镜像所使用）
   - name: github-release
     desc: 一些项目的 Github Release 镜像
   - name: gitlab-ce
@@ -242,8 +242,6 @@ mirror_desc:
     desc: Linux 内核源代码的 Git 仓库, 稳定版分支
   - name: linux.git
     desc: Linux 内核源代码的 Git 仓库
-  - name: linuxbrew-bottles
-    desc: 预编译的 Linuxbrew 软件包
   - name: linuxlite-cd
     desc: 基于 Ubuntu 长期支持版本（LTS）的 Linux 发行版 Linux Lite 的安装镜像
   - name: linuxmint
@@ -300,6 +298,12 @@ mirror_desc:
     desc: Nixpkgs 软件包发行版
   - name: nixos-images
     desc: NixOS 的安装镜像和虚拟机镜像
+  - name: openbsd
+    desc: OpenBSD 软件包镜像源
+  - name: netbsd
+    desc: NetBSD 系统镜像源
+  - name: u.sb
+    desc: 为 Debian / Ubuntu 编译的最新版 nginx
   - name: nodejs-release
     desc: 预编译的 Node.js 二进制程序
   - name: nodesource
@@ -338,6 +342,8 @@ mirror_desc:
     desc: 开源的数据库解决方案，详见 http://www.percona.com
   - name: pkgsrc
     desc: NetBSD 的第三方软件源
+  - name: pkgsrc.git
+    desc: pkgsrc 的源码仓库
   - name: postgresql
     desc: 著名的开源关系型数据库 PostgreSQL 的镜像
   - name: prometheus
@@ -373,9 +379,11 @@ mirror_desc:
   - name: repoforge
     desc: Repoforge 是 RHEL 系统下的软件仓库，已长期无更新
   - name: ros
-    desc: ROS提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
+    desc: ROS 提供一系列程序库和工具以帮助软件开发者创建机器人应用软件
   - name: ros2
     desc: ROS (Robot Operating System) 2.0 版本
+  - name: rosdistro
+    desc: rosdep 所使用的依赖关系数据库
   - name: rpmfusion
     desc: RPM Fusion 提供了一些 Fedora Project 和 Red Hat 不包含的软件
   - name: rubygems
@@ -396,6 +404,8 @@ mirror_desc:
     desc: 用于 ARM 设备的 Slackware 发行版源代码和官方软件包仓库
   - name: solus
     desc: Solus 的软件仓库，致力于制作对新手友好的发行版
+  - name: sourceware
+    desc: sourceware 网站的项目
   - name: stackage
     desc: Haskell 项目管理器 stack 所需的元数据与 ghc 安装包的镜像
   - name: steamos
@@ -414,6 +424,8 @@ mirror_desc:
     desc: 为嵌入式开发的微型 Linux 发行版
   - name: tlpretest
     desc: TeX Live 测试版本的软件包仓库与安装镜像
+  - name: tuna
+    desc: TUNA 协会资料存档
   - name: ubuntu
     desc: 流行的 Linux 发行版 Ubuntu 的安装镜像和官方软件包仓库
   - name: ubuntu-cdimage
@@ -440,28 +452,22 @@ mirror_desc:
     desc: 著名的网络监视、管理系统
 
 new_mirrors:
-  - hugging-face-models
-  - endeavouros
-  - ubuntukylin
-  - putty
-  - postmarketOS
-  - postmarketOS-images
-  - obs-studio
-  - stellarium
+  - rosdistro
+  - entware
+  - sourceware
+  - crates.io-index
 
 unlisted_mirrors:
   - status: 'success'
     last_update: '-'
-    name: "AUR"
-    url: 'https://aur.tuna.tsinghua.edu.cn/'
-    upstream: 'https://aur.archlinux.org/'
+    name: "tuna"
+    url: '/tuna/'
+    upstream: 'cloud.tsinghua.edu.cn'
     is_master: true
-  - link_to: 'osdn'
-    name: "manjaro-cd"
-    url: '/osdn/storage/g/m/ma/manjaro/'
-  - link_to: 'osdn'
-    name: "manjaro-arm-cd"
-    url: '/osdn/storage/g/m/ma/manjaro-arm/'
+  - link_to: 'sourceware'
+    last_update: '-'
+    name: "cygwin"
+    url: '/cygwin/'
   - link_to: 'osdn'
     name: "mxlinux-isos"
     url: '/osdn/storage/g/m/mx/mx-linux/ISOs/'
@@ -520,7 +526,6 @@ unlisted_mirrors:
     name: "thuthesis"
     url: '/github-release/tuna/thuthesis'
 
-
 force_redirect_help_mirrors:
   - AOSP
   - lineageOS
@@ -544,9 +549,9 @@ force_redirect_help_mirrors:
   - glibc.git
   - flutter-sdk.git
   - julia-general.git
-
-force_show_help_mirrors:
-  - hugging-face-models
+  - pkgsrc.git
+  - nixpkgs.git
+  - ohmyzsh.git
 
 label_map:
   unknown: label-default

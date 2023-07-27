@@ -8,13 +8,16 @@ permalink: /fancy-index/after.html
 			</div><!--/container -->
 		</div><!--/mirrors -->
 
+<!--
+ref fa-cube icon from before.html
+{% fa_svg fas.fa-cube %}
+-->
 		{% include footer.html %}
 
 	</body>
 	{% raw %}
 	{% endraw %}
-	<script src="{{ site.baseurl }}/static/js/index.js"></script>
-	<script src="{{ site.baseurl }}/static/js/browser-update.js"></script>
+	<script src="/static/js/index.js?{{ site.data['hash'] }}"></script>
 	{% raw %}
 	<script>
 		document.getElementById("list").setAttribute("class", "table");

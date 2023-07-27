@@ -16,7 +16,7 @@ function legacyIndexRender(r){
     }
     return result;
   }
-  r.subrequest('{{ /legacy_index.html | relative_url }}', {
+  r.subrequest('/legacy_index.html', {
     args: '',
     body: '',
     method: 'GET'
@@ -26,7 +26,7 @@ function legacyIndexRender(r){
     }
     var tmpl = rTmpl.responseBody;
     
-    r.subrequest('{{ /static/njs/options.json | relative_url }}', {
+    r.subrequest('/static/njs/options.json', {
       args: '',
       body: '',
       method: 'GET'
@@ -50,7 +50,7 @@ function legacyIndexRender(r){
       global_options.options.force_redirect_help_mirrors.forEach((m) => force_help[m] = true);
       var descriptions = {};
       global_options.options.mirror_desc.forEach((m) => descriptions[m.name] = m.desc);
-      r.subrequest('{{ /static/tunasync.json | relative_url }}', {
+      r.subrequest('/static/tunasync.json', {
         args: '',
         body: '',
         method: 'GET'

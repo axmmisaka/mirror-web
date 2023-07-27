@@ -8,29 +8,39 @@ $(document).ready(() => {
 		.find('table')
 		.addClass("table table-bordered table-striped");
 
-	var update_apt_file = (ev) => {
-		var sel = $(ev.target),
-			os_name=sel.find("option:selected").data('os'),
-			release_name=sel.find("option:selected").data('release'),
-			release_security=sel.find("option:selected").data('security'),
-			opt=sel.find('option:selected').data('opt'),
-			tmpl_selector=sel.data("template"), 
-			target_selector=sel.data("target"),
-			apt_template=$.trim($(tmpl_selector).text()),
-			tmpl_data=$.extend({}, {
-				os_name: os_name,
-				release_name: release_name,
-				release_security: release_security,
-			}, opt),
-			apt_content=Mark.up(
-				apt_template, 
-				tmpl_data
+	const update_target = (ev) => {
+		const sel = $(ev.target);
+		const target_selectors = sel.data("target").split(",");
+		for (const target_selector of target_selectors) {
+			const template_selector = $(target_selector).data("template");
+			const select_selectors = $(target_selector).data("select").split(",");
+			let url = "/" + window.mirrorId
+			if (window.mirrorId.endsWith(".git")) {
+				url = "/git/" + window.mirrorId
+			}
+			const template_data = {
+				"mirror": "{{ site.hostname }}" + url,
+			};
+			for (const select_selector of select_selectors) {
+				const opt = $(select_selector).find('option:selected').data();
+				$.extend(template_data, opt);
+			}
+			// special hack for case-insensitive
+			if ("sudoe" in template_data) {
+				template_data.sudoE = template_data.sudoe;
+			}
+			const template = $.trim($(template_selector).text());
+			const content = Mark.up(
+				template,
+				template_data
 			);
-		$(target_selector).html(apt_content);
+			$(target_selector).html(content);
+			hljs.highlightElement($(target_selector).get(0));
+		}
 	};
-	
-	$("select.release-select").on('change', update_apt_file);
-	$("select.release-select").each((i, e) => {
+
+	$("select.content-select").on('change', update_target);
+	$("select.content-select").each((i, e) => {
 		$(e).trigger('change');
 	});
 
@@ -39,18 +49,19 @@ $(document).ready(() => {
 		window.location = `${window.location.protocol}//${window.location.host}${help_url}`;
 	});
 
-	$.getJSON("{{ '/static/tunasync.json' | relative_url }}", (statusData) => {
+	$.getJSON("/static/tunasync.json", (statusData) => {
 		// remove help items for disabled/removed mirrors
 		let availableMirrorIds = new Set(statusData.map(x => x.name));
 		globalOptions.unlisted_mirrors.forEach(elem => {
 			availableMirrorIds.add(elem.name)
 		});
-		globalOptions.force_show_help_mirrors.forEach(elem => {
-			availableMirrorIds.add(elem)
-		});
 		console.log(window.mirrorId);
 		if (!availableMirrorIds.has(window.mirrorId)) {
-			location.href = "{{ '/404-help-hidden.html' | relative_url }}"; // this will break 404 issue submission
+			if ({{ site.hide_mirrorz }}) {
+				location.href = "/404-help-hidden.html"; // this will break 404 issue submission
+			} else {
+				location.href = "{{ site.mirrorz_help_link }}" + window.mirrorId; // TODO: convert this to mirrorz cname
+			}
 		}
 
 		$('li').filter((_, node) => node.id && node.id.startsWith("toc-") && !availableMirrorIds.has(node.id.slice(4))).remove();

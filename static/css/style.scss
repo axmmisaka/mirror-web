@@ -47,7 +47,7 @@ $color_primary_dark: $color_thu_purple_dark;
 
 @mixin dark {
   {% unless site.issue %}
-    @media (prefers-color-scheme: dark) { 
+    @media (prefers-color-scheme: dark) {
         @content
     }
   {% else %}
@@ -67,7 +67,8 @@ $color_primary_dark: $color_thu_purple_dark;
 "Lato",
 "structure",
 "bootstrap-mod",
-"syntax-highlighting";
+"syntax-highlighting",
+"_spinners/3-wave";
 
 {% unless site.issue %}
 :root {
@@ -159,7 +160,7 @@ body {
             vertical-align: 20%;
             margin-left: .5em;
         }
-       .fa-question-circle {
+       .question-circle {
             color: #234961;
             @include dark{
                 color: #6e9cdb;
@@ -211,9 +212,6 @@ body {
                 color: $color_grey_dark;
             }
         }
-    }
-    .fa-user {
-        font-family: #{$font_default}, 'FontAwesome';
     }
 }
 
@@ -393,27 +391,27 @@ body {
       opacity: .5;
       filter: grayscale(0.2);
       background-image: url(/static/img/missing.png);
-      background-image: -webkit-image-set(url("{{ '/static/img/missing.png' | relative_url }}") 1x,
-      url("{{ '/static/img/missing@2x.png' | relative_url }}") 2x,
-      url("{{ '/static/img/missing@3x.png' | relative_url }}") 3x,
-      url("{{ '/static/img/missing@4x.png' | relative_url }}") 4x);
-      background-image: image-set(url("{{ '/static/img/missing.png' | relative_url }}") 1x,
-      url("{{ '/static/img/missing@2x.png' | relative_url }}") 2x,
-      url("{{ '/static/img/missing@3x.png' | relative_url }}") 3x,
-      url("{{ '/static/img/missing@4x.png' | relative_url }}") 4x);
+      background-image: -webkit-image-set(url("/static/img/missing.png") 1x,
+      url("/static/img/missing@2x.png") 2x,
+      url("/static/img/missing@3x.png") 3x,
+      url("/static/img/missing@4x.png") 4x);
+      background-image: image-set(url("/static/img/missing.png") 1x,
+      url("/static/img/missing@2x.png") 2x,
+      url("/static/img/missing@3x.png") 3x,
+      url("/static/img/missing@4x.png") 4x);
     }
     @include dark {
         opacity: 1;
         filter: none;
         background-image: url(/static/img/missing-dark.png);
-        background-image: -webkit-image-set(url("{{ '/static/img/missing-dark.png' | relative_url }}") 1x,
-        url("{{ '/static/img/missing-dark@2x.png' | relative_url }}") 2x,
-        url("{{ '/static/img/missing-dark@3x.png' | relative_url }}") 3x,
-        url("{{ '/static/img/missing-dark@4x.png' | relative_url }}") 4x);
-        background-image: image-set(url("{{ '/static/img/missing-dark.png' | relative_url }}") 1x,
-        url("{{ '/static/img/missing-dark@2x.png' | relative_url }}") 2x,
-        url("{{ '/static/img/missing-dark@3x.png' | relative_url }}") 3x,
-        url("{{ '/static/img/missing-dark@4x.png' | relative_url }}") 4x);
+        background-image: -webkit-image-set(url("/static/img/missing-dark.png") 1x,
+        url("/static/img/missing-dark@2x.png") 2x,
+        url("/static/img/missing-dark@3x.png") 3x,
+        url("/static/img/missing-dark@4x.png") 4x);
+        background-image: image-set(url("/static/img/missing-dark.png") 1x,
+        url("/static/img/missing-dark@2x.png") 2x,
+        url("/static/img/missing-dark@3x.png") 3x,
+        url("/static/img/missing-dark@4x.png") 4x);
     }
 }
 
@@ -480,14 +478,14 @@ body {
       color: #fff;
       text-align: center;
       border-radius: 5px;
-      
+
       /* Position the tooltip text - see examples below! */
       position: absolute;
       top: 0;
       left: 0;
       z-index: 1;
     }
-    
+
     &:hover > .tooltiptext {
       visibility: visible;
     }
@@ -542,15 +540,22 @@ body {
 }
 {% endfor %}
 
-/* style for browser-update banner */
-div.buorg {
-  border-bottom: unset;
-  background-color: inherit;
-  color: inherit;
-  @include dark{
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.2);
-    #buorgig, #buorgul, #buorgpermanent {
-      box-shadow: 0 0 2px rgba(255, 255, 255, 0.4);
-    }
+svg.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1.42857143em;
+  fill: currentColor;
+  vertical-align: bottom;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  svg.icon {
+    height: 1.1em;
   }
+}
+
+.content-select {
+  /* override color of form-control from bootstrap */
+  color: inherit;
+  background-color: transparent;
 }
