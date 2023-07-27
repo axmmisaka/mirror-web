@@ -52,8 +52,8 @@
 	{% include footer.html %}
 </body>
 
-<script src="/static/js/highlight.min.js?{{ site.data['hash'] }}"></script>
-<script src="/static/js/help.js?{{ site.data['hash'] }}"></script>
+<script src="{{ 'static/js/highlight.min.js?' | append: site.data['hash'] | relative_url }}"></script>
+<script src="{{ 'static/js/help.js?' | append: site.data['hash'] | relative_url }}"></script>
 
 </html>
 <!--
